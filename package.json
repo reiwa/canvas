@@ -1,0 +1,43 @@
+{
+  "name": "artworks",
+  "version": "0.1.0",
+  "description": "no description",
+  "license": "MIT",
+  "author": "uufish",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:uufish/artworks.git"
+  },
+  "scripts": {
+    "build": "NODE_ENV=production webpack",
+    "start": "webpack-dev-server",
+    "svelte:compile": "svelte compile --format iife svelte/app.html -o docs/app.js"
+  },
+  "dependencies": {
+    "benchmark": "^2.1.4",
+    "microtime": "^2.1.6"
+  },
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "standard": "^10.0.2",
+    "svelte-cli": "^1.4.0",
+    "webpack": "^3.4.1",
+    "webpack-dev-server": "^2.6.1"
+  },
+  "private": true,
+  "standard": {
+    "parser": "babel-eslint",
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "ignore": [
+      "docs"
+    ]
+  }
+}

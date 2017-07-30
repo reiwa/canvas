@@ -1,0 +1,75 @@
+<div>
+  {{#each canvas as item}}
+  <div>
+    <a href='{{item.href}}'>{{item.title}}</a>
+  </div>
+  {{/each}}
+  <div class='footer'>
+    <p>license:MIT</p>
+  </div>
+  <div>
+    <a target='_blank' href='https://github.com/uufish/artworks'>uufish/artworks</a>
+  </div>
+</div>
+
+<style>
+  p, a {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    text-decoration: none;
+    color: #0091EA;
+    letter-spacing: 2px;
+    line-height: 1.5rem
+  }
+
+  a:hover {
+    color: #64FFDA
+  }
+
+  .footer {
+    padding-top: 10px
+  }
+</style>
+
+<script>
+  export default {
+    data () {
+      return {
+        canvas: [
+          {title: 'default', href: ''},
+          {title: 'basic', href: 'basic'},
+          {title: 'basic:velocity', href: 'basic-velocity'},
+          {title: 'basic:acceleration', href: 'basic-acceleration'},
+          {title: 'basic:gravity', href: 'basic-gravity'},
+          {title: 'basic:random', href: 'basic-random'},
+          {title: 'basic:region', href: 'basic-region'},
+          {title: 'basic:reflection', href: 'basic-reflection'},
+          {title: 'multi', href: 'multi'},
+          {title: 'multi:velocity', href: 'multi-velocity'},
+          {title: 'multi:gravity', href: 'multi-gravity'},
+          {title: 'multi:reflection', href: 'multi-reflection'},
+          {title: 'multi:arc', href: 'multi-arc'},
+          {title: 'multi:connection', href: 'multi-connection'},
+          {title: 'multi:triangle-connection', href: 'multi-triangle-connection'},
+          {title: 'sin', href: 'sin'},
+          {title: 'sin:wave', href: 'sin-wave'},
+          {title: 'sin:acceleration', href: 'sin-acceleration'},
+          {title: 'sin:reflection', href: 'sin-reflection'},
+          {title: 'sin:velocity', href: 'sin-velocity'},
+          {title: 'noise', href: 'noise'},
+          {title: 'noise:simple', href: 'noise-simple'},
+          {title: 'noise:circle', href: 'noise-circle'},
+          {title: 'noise:line', href: 'noise-line'},
+          {title: 'artwork:alpha', href: 'artwork-alpha'},
+          {title: 'artwork:fish', href: 'artwork-fish'},
+          {title: 'artwork:puzzle', href: 'artwork-puzzle'}
+        ].map(item => ({
+          title: item.title,
+          href: window.location.origin + window.location.pathname + (item.href && '?code=' + item.href)
+        }))
+      }
+    }
+  }
+</script>
