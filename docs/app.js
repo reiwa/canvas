@@ -5,7 +5,6 @@ var template = (function () {
     data () {
       return {
         canvas: [
-          {title: 'default', href: ''},
           {title: 'basic', href: 'basic'},
           {title: 'basic:velocity', href: 'basic-velocity'},
           {title: 'basic:acceleration', href: 'basic-acceleration'},
@@ -43,13 +42,13 @@ var template = (function () {
 
 function add_css () {
 	var style = createElement( 'style' );
-	style.id = 'svelte-453082682-style';
-	style.textContent = "\n  p[svelte-453082682], [svelte-453082682] p, a[svelte-453082682], [svelte-453082682] a {\n    display: inline;\n    margin: 0;\n    padding: 0;\n    font-size: 1rem;\n    text-decoration: none;\n    color: #0091EA;\n    letter-spacing: 2px;\n    line-height: 1.5rem\n  }\n\n  a[svelte-453082682]:hover, [svelte-453082682] a:hover {\n    color: #64FFDA\n  }\n\n  [svelte-453082682].footer, [svelte-453082682] .footer {\n    padding-top: 10px\n  }\n";
+	style.id = 'svelte-4047739077-style';
+	style.textContent = "\n  p[svelte-4047739077], [svelte-4047739077] p, a[svelte-4047739077], [svelte-4047739077] a {\n    display: inline;\n    margin: 0;\n    padding: 0;\n    font-size: 1rem;\n    text-decoration: none;\n    color: #0091EA;\n    letter-spacing: 2px;\n    line-height: 1.5rem\n  }\n\n  a[svelte-4047739077]:hover, [svelte-4047739077] a:hover {\n    color: #64FFDA\n  }\n\n  [svelte-4047739077].menu, [svelte-4047739077] .menu {\n    padding-top: 10px\n  }\n";
 	appendNode( style, document.head );
 }
 
 function create_main_fragment ( state, component ) {
-	var div, text, div_1, p, text_1, text_3, div_2, a, text_4;
+	var div, div_1, a, text, text_2, div_2, p, text_3, text_5, div_3;
 
 	var each_block_value = state.canvas;
 
@@ -62,44 +61,44 @@ function create_main_fragment ( state, component ) {
 	return {
 		create: function () {
 			div = createElement( 'div' );
+			div_1 = createElement( 'div' );
+			a = createElement( 'a' );
+			text = createText( "uufish/artworks" );
+			text_2 = createText( "\n  " );
+			div_2 = createElement( 'div' );
+			p = createElement( 'p' );
+			text_3 = createText( "license:MIT" );
+			text_5 = createText( "\n  " );
+			div_3 = createElement( 'div' );
 
 			for ( var i = 0; i < each_block_iterations.length; i += 1 ) {
 				each_block_iterations[i].create();
 			}
-
-			text = createText( "\n  " );
-			div_1 = createElement( 'div' );
-			p = createElement( 'p' );
-			text_1 = createText( "license:MIT" );
-			text_3 = createText( "\n  " );
-			div_2 = createElement( 'div' );
-			a = createElement( 'a' );
-			text_4 = createText( "uufish/artworks" );
 			this.hydrate();
 		},
 
 		hydrate: function ( nodes ) {
-			setAttribute( div, 'svelte-453082682', '' );
-			div_1.className = "footer";
+			setAttribute( div, 'svelte-4047739077', '' );
 			a.target = "_blank";
 			a.href = "https://github.com/uufish/artworks";
+			div_3.className = "menu";
 		},
 
 		mount: function ( target, anchor ) {
 			insertNode( div, target, anchor );
+			appendNode( div_1, div );
+			appendNode( a, div_1 );
+			appendNode( text, a );
+			appendNode( text_2, div );
+			appendNode( div_2, div );
+			appendNode( p, div_2 );
+			appendNode( text_3, p );
+			appendNode( text_5, div );
+			appendNode( div_3, div );
 
 			for ( var i = 0; i < each_block_iterations.length; i += 1 ) {
-				each_block_iterations[i].mount( div, null );
+				each_block_iterations[i].mount( div_3, null );
 			}
-
-			appendNode( text, div );
-			appendNode( div_1, div );
-			appendNode( p, div_1 );
-			appendNode( text_1, p );
-			appendNode( text_3, div );
-			appendNode( div_2, div );
-			appendNode( a, div_2 );
-			appendNode( text_4, a );
 		},
 
 		update: function ( changed, state ) {
@@ -112,7 +111,7 @@ function create_main_fragment ( state, component ) {
 					} else {
 						each_block_iterations[i] = create_each_block( state, each_block_value, each_block_value[i], i, component );
 						each_block_iterations[i].create();
-						each_block_iterations[i].mount( div, text );
+						each_block_iterations[i].mount( div_3, null );
 					}
 				}
 
@@ -192,7 +191,7 @@ function app ( options ) {
 	this._yield = options._yield;
 
 	this._torndown = false;
-	if ( !document.getElementById( 'svelte-453082682-style' ) ) add_css();
+	if ( !document.getElementById( 'svelte-4047739077-style' ) ) add_css();
 
 	this._fragment = create_main_fragment( this._state, this );
 
