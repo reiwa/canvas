@@ -1,11 +1,15 @@
 const model = (context) => {
   return {
     color: '#0091EA',
-    size: 1
+    size: 1,
+    yOff: Math.random(10),
+    xOff: Math.random(10)
   }
 }
 
 const update = (context, state) => {
+  state.xOff = state.xOff - 0.005
+  state.yOff = state.xOff + 0.005
   return state
 }
 
@@ -14,16 +18,15 @@ const render = (context, state) => {
   context.fillStyle = state.color
   context.save()
   context.translate(width / 2, height / 2)
-  const cache = Math.random(10)
-  let yOff = Math.random(10)
-  for (let y = width / -4; y <= width / 4; y += 4) {
+  let yOff = state.yOff
+  for (let y = width / -8; y <= width / 8; y += 4) {
     yOff += 0.02
-    let xOff = cache
-    for (let x = width / -4; x <= width / 4; x += 4) {
+    let xOff = state.xOff
+    for (let x = width / -8; x <= width / 8; x += 4) {
       xOff += 0.02
       const factor = noise(xOff, yOff)
       context.beginPath()
-      context.arc(x * factor * 2, y * factor * 2, state.size * factor * 4, 0, Math.PI * 2)
+      context.arc(x * factor * 2, y * factor * 2, state.size * factor * 2, 0, Math.PI * 2)
       context.fill()
     }
   }
@@ -35,6 +38,7 @@ const animationFrame = (context, _state, updates) => {
   context.clearRect(0, 0, width, height)
   const state = updates(context, _state)
   render(context, state)
+  requestAnimationFrame(animationFrame.bind(null, context, state, updates))
 }
 
 const main = () => {
@@ -52,7 +56,7 @@ const noise = (x, y = 0, z = 0) => {
   if (z < 0) { z = -z }
 
   const octaves = 4
-  const falloffRate = 0.5
+  const falloffRate = 0.8
 
   const yWrapB = 4
   const yWrap = 1 << yWrapB

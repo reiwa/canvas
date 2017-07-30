@@ -40,6 +40,8 @@ module.exports = {
     ],
   devServer: {
     contentBase: require('path').resolve('docs'),
+    host: process.env.HOST || 'localhost',
+    port: process.env.PORT || 4000,
     noInfo: true
   }
 }
