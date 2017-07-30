@@ -25,7 +25,7 @@ var template = (function () {
           {title: 'sin:acceleration', href: 'sin-acceleration'},
           {title: 'sin:reflection', href: 'sin-reflection'},
           {title: 'sin:velocity', href: 'sin-velocity'},
-          {title: 'noise [new]', href: 'noise'},
+          {title: 'noise', href: 'noise'},
           {title: 'noise:simple', href: 'noise-simple'},
           {title: 'noise:circle', href: 'noise-circle'},
           {title: 'noise:line', href: 'noise-line'},
@@ -43,8 +43,8 @@ var template = (function () {
 
 function add_css () {
 	var style = createElement( 'style' );
-	style.id = 'svelte-2291381482-style';
-	style.textContent = "\n  p[svelte-2291381482], [svelte-2291381482] p, a[svelte-2291381482], [svelte-2291381482] a {\n    display: inline;\n    margin: 0;\n    padding: 0;\n    font-size: 1rem;\n    text-decoration: none;\n    color: #0091EA;\n    letter-spacing: 2px;\n    line-height: 1.5rem\n  }\n\n  a[svelte-2291381482]:hover, [svelte-2291381482] a:hover {\n    color: #64FFDA\n  }\n\n  [svelte-2291381482].footer, [svelte-2291381482] .footer {\n    padding-top: 10px\n  }\n";
+	style.id = 'svelte-453082682-style';
+	style.textContent = "\n  p[svelte-453082682], [svelte-453082682] p, a[svelte-453082682], [svelte-453082682] a {\n    display: inline;\n    margin: 0;\n    padding: 0;\n    font-size: 1rem;\n    text-decoration: none;\n    color: #0091EA;\n    letter-spacing: 2px;\n    line-height: 1.5rem\n  }\n\n  a[svelte-453082682]:hover, [svelte-453082682] a:hover {\n    color: #64FFDA\n  }\n\n  [svelte-453082682].footer, [svelte-453082682] .footer {\n    padding-top: 10px\n  }\n";
 	appendNode( style, document.head );
 }
 
@@ -79,7 +79,7 @@ function create_main_fragment ( state, component ) {
 		},
 
 		hydrate: function ( nodes ) {
-			setAttribute( div, 'svelte-2291381482', '' );
+			setAttribute( div, 'svelte-453082682', '' );
 			div_1.className = "footer";
 			a.target = "_blank";
 			a.href = "https://github.com/uufish/artworks";
@@ -192,7 +192,7 @@ function app ( options ) {
 	this._yield = options._yield;
 
 	this._torndown = false;
-	if ( !document.getElementById( 'svelte-2291381482-style' ) ) add_css();
+	if ( !document.getElementById( 'svelte-453082682-style' ) ) add_css();
 
 	this._fragment = create_main_fragment( this._state, this );
 
