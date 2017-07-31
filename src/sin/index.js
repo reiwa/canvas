@@ -32,12 +32,12 @@ const render = (context, state) => {
   context.fill()
 }
 
-const animationFrame = (context, _state, updates) => {
+const animationFrame = (context, _state, update) => {
   const {width, height} = context.canvas
   context.clearRect(0, 0, width, height)
-  const state = updates(context, _state)
+  const state = update(context, _state)
   render(context, state)
-  requestAnimationFrame(animationFrame.bind(null, context, state, updates))
+  requestAnimationFrame(animationFrame.bind(null, context, state, update))
 }
 
 const main = () => {

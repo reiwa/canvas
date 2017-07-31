@@ -28,13 +28,18 @@ var template = (function () {
           {title: 'noise:simple', href: 'noise-simple'},
           {title: 'noise:circle', href: 'noise-circle'},
           {title: 'noise:line', href: 'noise-line'},
+          {title: 'webgl', href: 'webgl', new: true},
           {title: 'artwork:alpha', href: 'artwork-alpha'},
           {title: 'artwork:fish', href: 'artwork-fish'},
           {title: 'artwork:puzzle', href: 'artwork-puzzle'}
-        ].map(item => ({
-          title: item.title,
-          href: window.location.origin + window.location.pathname + (item.href && '?code=' + item.href)
-        }))
+        ]
+        .map(item => {
+          return {
+            title: item.title,
+            href: window.location.origin + window.location.pathname + (item.href && '?code=' + item.href),
+            new: item.new || false
+          }
+        })
       }
     }
   }
@@ -42,13 +47,13 @@ var template = (function () {
 
 function add_css () {
 	var style = createElement( 'style' );
-	style.id = 'svelte-4047739077-style';
-	style.textContent = "\n  p[svelte-4047739077], [svelte-4047739077] p, a[svelte-4047739077], [svelte-4047739077] a {\n    display: inline;\n    margin: 0;\n    padding: 0;\n    font-size: 1rem;\n    text-decoration: none;\n    color: #0091EA;\n    letter-spacing: 2px;\n    line-height: 1.5rem\n  }\n\n  a[svelte-4047739077]:hover, [svelte-4047739077] a:hover {\n    color: #64FFDA\n  }\n\n  [svelte-4047739077].menu, [svelte-4047739077] .menu {\n    padding-top: 10px\n  }\n";
+	style.id = 'svelte-744203435-style';
+	style.textContent = "\n  p[svelte-744203435], [svelte-744203435] p, a[svelte-744203435], [svelte-744203435] a, span[svelte-744203435], [svelte-744203435] span {\n    display: inline;\n    margin: 0;\n    padding: 0;\n    font-size: 1rem;\n    text-decoration: none;\n    color: #0091EA;\n    letter-spacing: 2px;\n    line-height: 1.5rem\n  }\n\n  a[svelte-744203435]:hover, [svelte-744203435] a:hover {\n    color: #64FFDA\n  }\n\n  [svelte-744203435].new, [svelte-744203435] .new {\n    color: #FF5252\n  }\n\n  [svelte-744203435].menu, [svelte-744203435] .menu {\n    padding-top: 10px\n  }\n";
 	appendNode( style, document.head );
 }
 
 function create_main_fragment ( state, component ) {
-	var div, div_1, a, text, text_2, div_2, p, text_3, text_5, div_3;
+	var div, div_1, a, text, text_2, div_2;
 
 	var each_block_value = state.canvas;
 
@@ -66,10 +71,6 @@ function create_main_fragment ( state, component ) {
 			text = createText( "uufish/artworks" );
 			text_2 = createText( "\n  " );
 			div_2 = createElement( 'div' );
-			p = createElement( 'p' );
-			text_3 = createText( "license:MIT" );
-			text_5 = createText( "\n  " );
-			div_3 = createElement( 'div' );
 
 			for ( var i = 0; i < each_block_iterations.length; i += 1 ) {
 				each_block_iterations[i].create();
@@ -78,10 +79,10 @@ function create_main_fragment ( state, component ) {
 		},
 
 		hydrate: function ( nodes ) {
-			setAttribute( div, 'svelte-4047739077', '' );
+			setAttribute( div, 'svelte-744203435', '' );
 			a.target = "_blank";
 			a.href = "https://github.com/uufish/artworks";
-			div_3.className = "menu";
+			div_2.className = "menu";
 		},
 
 		mount: function ( target, anchor ) {
@@ -91,13 +92,9 @@ function create_main_fragment ( state, component ) {
 			appendNode( text, a );
 			appendNode( text_2, div );
 			appendNode( div_2, div );
-			appendNode( p, div_2 );
-			appendNode( text_3, p );
-			appendNode( text_5, div );
-			appendNode( div_3, div );
 
 			for ( var i = 0; i < each_block_iterations.length; i += 1 ) {
-				each_block_iterations[i].mount( div_3, null );
+				each_block_iterations[i].mount( div_2, null );
 			}
 		},
 
@@ -111,7 +108,7 @@ function create_main_fragment ( state, component ) {
 					} else {
 						each_block_iterations[i] = create_each_block( state, each_block_value, each_block_value[i], i, component );
 						each_block_iterations[i].create();
-						each_block_iterations[i].mount( div_3, null );
+						each_block_iterations[i].mount( div_2, null );
 					}
 				}
 
@@ -138,13 +135,17 @@ function create_main_fragment ( state, component ) {
 }
 
 function create_each_block ( state, each_block_value, item, item_index, component ) {
-	var div, a, a_href_value, text_value, text;
+	var div, a, a_href_value, text_value, text, text_1;
+
+	var if_block = (item.new) && create_if_block( state, each_block_value, item, item_index, component );
 
 	return {
 		create: function () {
 			div = createElement( 'div' );
 			a = createElement( 'a' );
 			text = createText( text_value = item.title );
+			text_1 = createText( "\n        " );
+			if ( if_block ) if_block.create();
 			this.hydrate();
 		},
 
@@ -156,6 +157,8 @@ function create_each_block ( state, each_block_value, item, item_index, componen
 			insertNode( div, target, anchor );
 			appendNode( a, div );
 			appendNode( text, a );
+			appendNode( text_1, a );
+			if ( if_block ) if_block.mount( a, null );
 		},
 
 		update: function ( changed, state, each_block_value, item, item_index ) {
@@ -166,10 +169,52 @@ function create_each_block ( state, each_block_value, item, item_index, componen
 			if ( text_value !== ( text_value = item.title ) ) {
 				text.data = text_value;
 			}
+
+			if ( item.new ) {
+				if ( !if_block ) {
+					if_block = create_if_block( state, each_block_value, item, item_index, component );
+					if_block.create();
+					if_block.mount( a, null );
+				}
+			} else if ( if_block ) {
+				if_block.unmount();
+				if_block.destroy();
+				if_block = null;
+			}
 		},
 
 		unmount: function () {
 			detachNode( div );
+			if ( if_block ) if_block.unmount();
+		},
+
+		destroy: function () {
+			if ( if_block ) if_block.destroy();
+		}
+	};
+}
+
+function create_if_block ( state, each_block_value, item, item_index, component ) {
+	var span, text;
+
+	return {
+		create: function () {
+			span = createElement( 'span' );
+			text = createText( "[new]" );
+			this.hydrate();
+		},
+
+		hydrate: function ( nodes ) {
+			span.className = "new";
+		},
+
+		mount: function ( target, anchor ) {
+			insertNode( span, target, anchor );
+			appendNode( text, span );
+		},
+
+		unmount: function () {
+			detachNode( span );
 		},
 
 		destroy: noop
@@ -191,7 +236,7 @@ function app ( options ) {
 	this._yield = options._yield;
 
 	this._torndown = false;
-	if ( !document.getElementById( 'svelte-4047739077-style' ) ) add_css();
+	if ( !document.getElementById( 'svelte-744203435-style' ) ) add_css();
 
 	this._fragment = create_main_fragment( this._state, this );
 

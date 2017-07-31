@@ -2,20 +2,20 @@
   <div>
     <a target='_blank' href='https://github.com/uufish/artworks'>uufish/artworks</a>
   </div>
-  <div>
-    <p>license:MIT</p>
-  </div>
   <div class='menu'>
     {{#each canvas as item}}
     <div>
-      <a href='{{item.href}}'>{{item.title}}</a>
+      <a href='{{item.href}}'>
+        {{item.title}}
+        {{#if item.new}}<span class='new'>[new]</span>{{/if}}
+      </a>
     </div>
     {{/each}}
   </div>
 </div>
 
 <style>
-  p, a {
+  p, a, span {
     display: inline;
     margin: 0;
     padding: 0;
@@ -28,6 +28,10 @@
 
   a:hover {
     color: #64FFDA
+  }
+
+  .new {
+    color: #FF5252
   }
 
   .menu {
@@ -63,13 +67,18 @@
           {title: 'noise:simple', href: 'noise-simple'},
           {title: 'noise:circle', href: 'noise-circle'},
           {title: 'noise:line', href: 'noise-line'},
+          {title: 'webgl', href: 'webgl', new: true},
           {title: 'artwork:alpha', href: 'artwork-alpha'},
           {title: 'artwork:fish', href: 'artwork-fish'},
           {title: 'artwork:puzzle', href: 'artwork-puzzle'}
-        ].map(item => ({
-          title: item.title,
-          href: window.location.origin + window.location.pathname + (item.href && '?code=' + item.href)
-        }))
+        ]
+        .map(item => {
+          return {
+            title: item.title,
+            href: window.location.origin + window.location.pathname + (item.href && '?code=' + item.href),
+            new: item.new || false
+          }
+        })
       }
     }
   }
