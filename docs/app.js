@@ -47,8 +47,8 @@ var template = (function () {
 
 function add_css () {
 	var style = createElement( 'style' );
-	style.id = 'svelte-744203435-style';
-	style.textContent = "\n  p[svelte-744203435], [svelte-744203435] p, a[svelte-744203435], [svelte-744203435] a, span[svelte-744203435], [svelte-744203435] span {\n    display: inline;\n    margin: 0;\n    padding: 0;\n    font-size: 1rem;\n    text-decoration: none;\n    color: #0091EA;\n    letter-spacing: 2px;\n    line-height: 1.5rem\n  }\n\n  a[svelte-744203435]:hover, [svelte-744203435] a:hover {\n    color: #64FFDA\n  }\n\n  [svelte-744203435].new, [svelte-744203435] .new {\n    color: #FF5252\n  }\n\n  [svelte-744203435].menu, [svelte-744203435] .menu {\n    padding-top: 10px\n  }\n";
+	style.id = 'svelte-1612774286-style';
+	style.textContent = "\n  p[svelte-1612774286], [svelte-1612774286] p, a[svelte-1612774286], [svelte-1612774286] a, span[svelte-1612774286], [svelte-1612774286] span {\n    display: inline;\n    margin: 0;\n    padding: 0;\n    font-size: 1rem;\n    text-decoration: none;\n    color: #0091EA;\n    letter-spacing: 2px;\n    line-height: 1.5rem\n  }\n\n  a[svelte-1612774286]:hover, [svelte-1612774286] a:hover {\n    color: #64FFDA\n  }\n\n  [svelte-1612774286].new, [svelte-1612774286] .new {\n    color: #FF5252\n  }\n\n  [svelte-1612774286].menu, [svelte-1612774286] .menu {\n    padding-top: 10px\n  }\n";
 	appendNode( style, document.head );
 }
 
@@ -79,7 +79,7 @@ function create_main_fragment ( state, component ) {
 		},
 
 		hydrate: function ( nodes ) {
-			setAttribute( div, 'svelte-744203435', '' );
+			setAttribute( div, 'svelte-1612774286', '' );
 			a.target = "_blank";
 			a.href = "https://github.com/uufish/artworks";
 			div_2.className = "menu";
@@ -200,7 +200,7 @@ function create_if_block ( state, each_block_value, item, item_index, component 
 	return {
 		create: function () {
 			span = createElement( 'span' );
-			text = createText( "[new]" );
+			text = createText( "new!" );
 			this.hydrate();
 		},
 
@@ -236,7 +236,7 @@ function app ( options ) {
 	this._yield = options._yield;
 
 	this._torndown = false;
-	if ( !document.getElementById( 'svelte-744203435-style' ) ) add_css();
+	if ( !document.getElementById( 'svelte-1612774286-style' ) ) add_css();
 
 	this._fragment = create_main_fragment( this._state, this );
 
